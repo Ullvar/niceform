@@ -41,8 +41,8 @@
         "singleQuote": true,
         "trailingComma": "es5"
     },
-    "name": "@eufre/niceform",
-    "author": "Eufre",
+    "name": "@Ullvar/niceform",
+    "author": "Ullvar",
     "module": "dist/niceform.esm.js",
     "size-limit": [
         {

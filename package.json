@@ -1,0 +1,78 @@
+{
+    "version": "2.2.0",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "test": "tsdx test",
+        "lint": "tsdx lint",
+        "prepare": "tsdx build",
+        "size": "size-limit",
+        "analyze": "size-limit --why"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/eufre/niceform.git"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "peerDependencies": {
+        "react": ">=17",
+        "react-dom": ">=17"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "tsdx lint"
+        }
+    },
+    "prettier": {
+        "printWidth": 80,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5"
+    },
+    "name": "@eufre/niceform",
+    "author": "Eufre",
+    "module": "dist/niceform.esm.js",
+    "size-limit": [
+        {
+            "path": "dist/niceform.cjs.production.min.js",
+            "limit": "10 KB"
+        },
+        {
+            "path": "dist/niceform.esm.js",
+            "limit": "10 KB"
+        }
+    ],
+    "devDependencies": {
+        "@chakra-ui/icons": "^1.0.13",
+        "@chakra-ui/react": "^1.6.1",
+        "@emotion/react": "^11.4.0",
+        "@emotion/styled": "^11.3.0",
+        "@size-limit/preset-small-lib": "^4.10.2",
+        "@types/react-beautiful-dnd": "^13.0.0",
+        "@types/uuid": "^8.3.0",
+        "framer-motion": "4.1.12",
+        "husky": "^6.0.0",
+        "react-hook-form": "^7.6.7",
+        "react-icons": "^4.2.0",
+        "size-limit": "^4.10.2",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.2.0",
+        "typescript": "^3.9.9"
+    },
+    "dependencies": {
+        "react-beautiful-dnd": "^13.1.0",
+        "uuid": "^3.4.0"
+    }
+}

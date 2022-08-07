@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
-          # Defaults to the user or organization that owns the workflow file
-          scope: '@ullvar'
       - run: npm ci
       - run: npm run build
       - run: npm publish

@@ -24,7 +24,7 @@
         "url": "https://github.com/Ullvar/niceform.git"
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
+        "registry": "https://registry.npmjs.org"
     },
     "peerDependencies": {
         "react": ">=17",

@@ -1,7 +1,6 @@
 import { CopyIcon, DeleteIcon, Icon } from '@chakra-ui/icons';
 import { Box, Flex, Spacer } from '@chakra-ui/layout';
-import { IconButton, Input, Select, Switch, Text } from '@chakra-ui/react';
-import { Collapse } from '@chakra-ui/transition';
+import { IconButton, Input, Select, Switch, Text, Collapse } from '@chakra-ui/react';
 import React, { ReactElement } from 'react';
 import { FaRegCircle, FaRegSquare } from 'react-icons/fa';
 import { FormField, FormFieldType } from '..';

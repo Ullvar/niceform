@@ -16,9 +16,14 @@ import { v4 as uuidv4 } from 'uuid';
 interface Props {
   formFields: FormField[];
   updateFormFields: (formFields: FormField[]) => void;
+  updateFormField: (formField: FormField) => void;
 }
 
-export const Builder: React.FC<Props> = ({ formFields, updateFormFields }) => {
+export const Builder: React.FC<Props> = ({
+  formFields,
+  updateFormFields,
+  updateFormField,
+}) => {
   const [currentFormFieldEditingId, setCurrentFormFieldEditingId] = useState(
     ''
   );
@@ -39,11 +44,12 @@ export const Builder: React.FC<Props> = ({ formFields, updateFormFields }) => {
           ? [{ idx: 0, value: '1', label: '' }]
           : [],
     };
+    updateFormField(newInput);
     updateFormFields([...formFields, newInput]);
     setCurrentFormFieldEditingId(inputId.toString());
   };
 
-  const updateFormField = (formField: FormField) => {
+  const handleUpdateFormField = (formField: FormField) => {
     const elementsIndex = formFields.findIndex(f => f.id === formField.id);
     let newFormFields = [...formFields];
     newFormFields[elementsIndex] = {
@@ -58,10 +64,14 @@ export const Builder: React.FC<Props> = ({ formFields, updateFormFields }) => {
           : formField.options,
       formFieldType: formField.formFieldType,
     };
+    const newFormField = newFormFields.find(f => f.id === formField.id);
+    if (newFormField) updateFormField(newFormField);
     updateFormFields(newFormFields);
   };
 
-  const removeFormField = (id: string) => {
+  const handleRemoveFormField = (id: string) => {
+    const formField = formFields.find(f => f.id === id);
+    if (formField) updateFormField(formField);
     updateFormFields(formFields.filter(f => f.id !== id));
   };
 
@@ -83,6 +93,12 @@ export const Builder: React.FC<Props> = ({ formFields, updateFormFields }) => {
     );
 
     const itemsWithNewIdx = updateIdx(items);
+
+    const formField =
+      itemsWithNewIdx.length - 1 >= result.destination.index
+        ? itemsWithNewIdx[result.destination.index]
+        : null;
+    if (formField) updateFormField(formField);
 
     updateFormFields(itemsWithNewIdx);
   };
@@ -150,8 +166,8 @@ export const Builder: React.FC<Props> = ({ formFields, updateFormFields }) => {
                           </Box>
                           <BuilderGenerator
                             formField={item}
-                            updateFormField={updateFormField}
-                            removeFormField={removeFormField}
+                            updateFormField={handleUpdateFormField}
+                            removeFormField={handleRemoveFormField}
                             handleAddInput={handleAddInput}
                             currentFormFieldEditingId={
                               currentFormFieldEditingId

@@ -19,8 +19,12 @@ const App = () => {
   const [formFields, setFormFields] = React.useState<FormField[]>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const update = (formFields: FormField[]) => {
+  const updates = (formFields: FormField[]) => {
     setFormFields(formFields);
+  };
+
+  const update = (formField: FormField) => {
+    console.log('a field was updated: ', formField);
   };
 
   const submit = (answers: JSONObject) => {
@@ -50,7 +54,12 @@ const App = () => {
             </ModalBody>
           </ModalContent>
         </Modal>
-        <Builder formFields={formFields} updateFormFields={update} />;
+        <Builder
+          formFields={formFields}
+          updateFormFields={updates}
+          updateFormField={update}
+        />
+        ;
       </Box>
     </ChakraProvider>
   );
